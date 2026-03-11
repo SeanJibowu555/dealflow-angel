@@ -101,6 +101,47 @@
       outline: none;
     }
 
+    .stage-guide {
+      margin-bottom: 22px;
+    }
+
+    .stage-guide-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .stage-guide-grid div {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .stage-guide-grid strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .stage-guide-grid span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 900px) {
+      .stage-guide-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .stage-guide-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .stats {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -252,7 +293,7 @@
     <div class="hero">
       <div class="title-wrap">
         <h1>DealFlow Angel</h1>
-        <p>Pipeline visibility for broker teams, with quick risk spotting.</p>
+        <p>Track deals. Spot delays. Keep pipeline moving.</p>
       </div>
       <div class="badge">Sheet Ninja powered</div>
     </div>
@@ -298,14 +339,14 @@
 
     <div class="grid">
       <div class="card">
-        <h2 class="section-title">At-Risk Deals</h2>
+        <h2 class="section-title">Needs Attention</h2>
         <div id="riskDeals" class="risk-list">
           <div class="loading">Loading at-risk deals...</div>
         </div>
       </div>
 
       <div class="card">
-        <h2 class="section-title">All Deals</h2>
+        <h2 class="section-title">Pipeline</h2>
         <div class="table-wrap">
           <table>
             <thead>
@@ -344,6 +385,32 @@
 
     let allDeals = [];
 
+    function isSpreadsheetSerialDate(value) {
+      const num = Number(value);
+      return !Number.isNaN(num) && num > 30000 && num < 60000;
+    }
+
+    function serialDateToISO(value) {
+      const serial = Number(value);
+      const utcDays = Math.floor(serial - 25569);
+      const utcValue = utcDays * 86400;
+      const dateInfo = new Date(utcValue * 1000);
+
+      const year = dateInfo.getUTCFullYear();
+      const month = String(dateInfo.getUTCMonth() + 1).padStart(2, "0");
+      const day = String(dateInfo.getUTCDate()).padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+    }
+
+    function normalizeDate(value) {
+      if (!value) return "";
+      if (isSpreadsheetSerialDate(value)) {
+        return serialDateToISO(value);
+      }
+      return String(value);
+    }
+
     function titleCase(value) {
       if (!value) return "";
       return String(value).charAt(0).toUpperCase() + String(value).slice(1);
@@ -360,8 +427,9 @@
     }
 
     function daysSince(dateStr) {
+      const normalized = normalizeDate(dateStr);
       const today = new Date();
-      const date = new Date(dateStr);
+      const date = new Date(normalized);
       if (Number.isNaN(date.getTime())) return 0;
       const diff = today - date;
       return Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -516,7 +584,7 @@
           Customer: d.Customer ?? d.customer ?? "",
           Stage: d.Stage ?? d.stage ?? "",
           Amount: d.Amount ?? d.amount ?? "",
-          LastUpdate: d.LastUpdate ?? d.lastupdate ?? d.lastUpdate ?? "",
+          LastUpdate: normalizeDate(d.LastUpdate ?? d.lastupdate ?? d.lastUpdate ?? ""),
           Priority: d.Priority ?? d.priority ?? "",
           Notes: d.Notes ?? d.notes ?? ""
         }));
