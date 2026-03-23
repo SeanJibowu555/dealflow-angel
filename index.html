@@ -90,7 +90,11 @@
     }
 
     .control input,
-    .control select {
+    .control select,
+    .control textarea,
+    .inline-select,
+    .inline-input,
+    .inline-textarea {
       width: 100%;
       background: var(--panel-2);
       border: 1px solid var(--border);
@@ -99,6 +103,63 @@
       border-radius: 12px;
       font-size: 0.95rem;
       outline: none;
+    }
+
+    .control textarea,
+    .inline-textarea {
+      min-height: 44px;
+      resize: vertical;
+    }
+
+    .add-card {
+      margin-bottom: 22px;
+    }
+
+    .add-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .add-grid .full {
+      grid-column: span 2;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, rgba(110, 231, 183, 0.18), rgba(96, 165, 250, 0.16));
+      color: var(--text);
+      border: 1px solid rgba(110, 231, 183, 0.25);
+      padding: 12px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+
+    .btn:hover {
+      filter: brightness(1.05);
+    }
+
+    .status-msg {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .status-ok {
+      color: #86efac;
+    }
+
+    .status-error {
+      color: #fca5a5;
     }
 
     .stage-guide {
@@ -134,11 +195,18 @@
       .stage-guide-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+      .add-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 560px) {
-      .stage-guide-grid {
+      .stage-guide-grid,
+      .add-grid {
         grid-template-columns: 1fr;
+      }
+      .add-grid .full {
+        grid-column: span 1;
       }
     }
 
@@ -212,7 +280,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 920px;
+      min-width: 1260px;
     }
 
     thead th {
@@ -258,6 +326,21 @@
     .risk-progress { background: rgba(248,113,113,.12); color: #fca5a5; border-color: rgba(248,113,113,.2); }
     .risk-delay { background: rgba(244,114,182,.12); color: #f9a8d4; border-color: rgba(244,114,182,.2); }
 
+    .save-btn {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(110, 231, 183, 0.25);
+      background: rgba(110, 231, 183, 0.12);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .save-btn:hover {
+      filter: brightness(1.08);
+    }
+
     .loading, .error, .empty {
       color: var(--muted);
       font-size: 0.96rem;
@@ -299,6 +382,58 @@
       <div class="badge">Sheet Ninja powered</div>
     </div>
 
+    <div class="card add-card">
+      <h2 class="section-title">Add Deal</h2>
+      <div class="add-grid">
+        <div class="control">
+          <label for="dealerInput">Dealer</label>
+          <input id="dealerInput" type="text" placeholder="Dealer name" />
+        </div>
+        <div class="control">
+          <label for="customerInput">Customer</label>
+          <input id="customerInput" type="text" placeholder="Customer name" />
+        </div>
+        <div class="control">
+          <label for="stageInput">Stage</label>
+          <select id="stageInput">
+            <option value="Lead">Lead</option>
+            <option value="Proposal">Proposal</option>
+            <option value="Approval">Approval</option>
+            <option value="Payout">Payout</option>
+            <option value="Declined">Declined</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="outcomeInput">Outcome</label>
+          <select id="outcomeInput">
+            <option value="">—</option>
+            <option value="Dead">Dead</option>
+            <option value="Follow-up">Follow-up</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="amountInput">Amount</label>
+          <input id="amountInput" type="number" placeholder="e.g. 15000" />
+        </div>
+        <div class="control">
+          <label for="priorityInput">Priority</label>
+          <input id="priorityInput" type="text" placeholder="High / Medium / Low" />
+        </div>
+        <div class="control full">
+          <label for="notesInput">Notes</label>
+          <textarea id="notesInput" placeholder="Any context, blockers, or next steps"></textarea>
+        </div>
+        <div class="control">
+          <label for="lastUpdateInput">Last Update</label>
+          <input id="lastUpdateInput" type="date" />
+        </div>
+      </div>
+      <div class="button-row">
+        <button class="btn" id="addDealBtn">+ Add Deal</button>
+        <span id="addStatus" class="status-msg"></span>
+      </div>
+    </div>
+
     <div class="controls">
       <div class="control">
         <label for="searchInput">Search dealer or customer</label>
@@ -334,7 +469,7 @@
         <div><strong>Proposal</strong><span>Finance case prepared or submitted</span></div>
         <div><strong>Approval</strong><span>Lender has approved the deal</span></div>
         <div><strong>Payout</strong><span>Deal funded successfully</span></div>
-        <div><strong>Declined</strong><span>Deal was declined; use Outcome to mark Dead or Follow-up</span></div>
+        <div><strong>Declined</strong><span>Lost deal, either dead or worth following up later</span></div>
       </div>
     </div>
 
@@ -363,15 +498,16 @@
                 <th>Priority</th>
                 <th>Notes</th>
                 <th>Risk Status</th>
+                <th>Save</th>
               </tr>
             </thead>
             <tbody id="tableBody">
-              <tr><td colspan="9" class="loading">Loading deals...</td></tr>
+              <tr><td colspan="10" class="loading">Loading deals...</td></tr>
             </tbody>
           </table>
         </div>
         <div class="footer-note">
-          Risk rules: Declined + Follow-up = Needs follow-up. Declined + Dead = Healthy. Proposal older than 7 days = Needs follow-up. Approval older than 5 days = Check progress. Notes containing “waiting” or “outstanding” = Potential delay.
+          Risk rules: Proposal older than 7 days = Needs follow-up. Approval older than 5 days = Check progress. Notes containing “waiting” or “outstanding” = Potential delay. Declined + Follow-up = Needs follow-up. Declined + Dead = Healthy.
         </div>
       </div>
     </div>
@@ -387,7 +523,23 @@
     const riskDealsEl = document.getElementById("riskDeals");
     const tableBody = document.getElementById("tableBody");
 
+    const dealerInput = document.getElementById("dealerInput");
+    const customerInput = document.getElementById("customerInput");
+    const stageInput = document.getElementById("stageInput");
+    const outcomeInput = document.getElementById("outcomeInput");
+    const amountInput = document.getElementById("amountInput");
+    const priorityInput = document.getElementById("priorityInput");
+    const notesInput = document.getElementById("notesInput");
+    const lastUpdateInput = document.getElementById("lastUpdateInput");
+    const addDealBtn = document.getElementById("addDealBtn");
+    const addStatus = document.getElementById("addStatus");
+
     let allDeals = [];
+
+    function setTodayDefault() {
+      const today = new Date().toISOString().split("T")[0];
+      if (!lastUpdateInput.value) lastUpdateInput.value = today;
+    }
 
     function isSpreadsheetSerialDate(value) {
       const num = Number(value);
@@ -409,15 +561,8 @@
 
     function normalizeDate(value) {
       if (!value) return "";
-      if (isSpreadsheetSerialDate(value)) {
-        return serialDateToISO(value);
-      }
+      if (isSpreadsheetSerialDate(value)) return serialDateToISO(value);
       return String(value);
-    }
-
-    function titleCase(value) {
-      if (!value) return "";
-      return String(value).charAt(0).toUpperCase() + String(value).slice(1);
     }
 
     function formatCurrency(amount) {
@@ -446,33 +591,14 @@
       const age = daysSince(deal.LastUpdate);
 
       if (stage === "declined") {
-        if (outcome === "follow-up" || outcome === "follow up") {
-          return "Needs follow-up";
-        }
-        if (outcome === "dead") {
-          return "Healthy";
-        }
+        if (outcome === "follow-up") return "Needs follow-up";
+        if (outcome === "dead") return "Healthy";
       }
-      if (notes.includes("waiting") || notes.includes("outstanding")) {
-        return "Potential delay";
-      }
-      if (stage === "proposal" && age > 7) {
-        return "Needs follow-up";
-      }
-      if (stage === "approval" && age > 5) {
-        return "Check progress";
-      }
-      return "Healthy";
-    }
 
-    function stageClass(stage) {
-      const value = String(stage || "").trim().toLowerCase();
-      if (value === "lead") return "stage-lead";
-      if (value === "proposal") return "stage-proposal";
-      if (value === "approval") return "stage-approval";
-      if (value === "payout") return "stage-payout";
-      if (value === "declined") return "stage-declined";
-      return "";
+      if (notes.includes("waiting") || notes.includes("outstanding")) return "Potential delay";
+      if (stage === "proposal" && age > 7) return "Needs follow-up";
+      if (stage === "approval" && age > 5) return "Check progress";
+      return "Healthy";
     }
 
     function riskClass(risk) {
@@ -489,6 +615,21 @@
       if (Array.isArray(data?.rows)) return data.rows;
       if (Array.isArray(data?.items)) return data.items;
       return [];
+    }
+
+    function currentFilteredDeals() {
+      const search = searchInput.value.trim().toLowerCase();
+      const stage = stageFilter.value;
+      const risk = riskFilter.value;
+
+      return allDeals.filter(d => {
+        const dealer = String(d.Dealer || "").toLowerCase();
+        const customer = String(d.Customer || "").toLowerCase();
+        const stageMatch = stage === "All" || String(d.Stage || "").toLowerCase() === stage.toLowerCase();
+        const riskMatch = risk === "All" || getRiskStatus(d) === risk;
+        const searchMatch = !search || dealer.includes(search) || customer.includes(search);
+        return stageMatch && riskMatch && searchMatch;
+      });
     }
 
     function renderStats(deals) {
@@ -534,7 +675,7 @@
           <div class="risk-item">
             <strong>${d.Dealer || "Unknown Dealer"} — ${d.Customer || "Unknown Customer"}</strong>
             <div class="risk-meta">
-              Stage: ${d.Stage || "—"}${d.Outcome ? ` (${d.Outcome})` : ""} · Amount: ${formatCurrency(d.Amount)} · Last update: ${d.LastUpdate || "—"} · Risk: ${risk}
+              Stage: ${d.Stage || "—"} · Outcome: ${d.Outcome || "—"} · Amount: ${formatCurrency(d.Amount)} · Last update: ${d.LastUpdate || "—"} · Risk: ${risk}
               <br/>
               Notes: ${d.Notes || "—"}
             </div>
@@ -545,53 +686,128 @@
 
     function renderTable(deals) {
       if (!deals.length) {
-        tableBody.innerHTML = `<tr><td colspan="9" class="empty">No deals match the current filters.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="10" class="empty">No deals match the current filters.</td></tr>`;
         return;
       }
 
-      tableBody.innerHTML = deals.map(d => {
+      tableBody.innerHTML = deals.map((d, index) => {
         const risk = getRiskStatus(d);
+        const stageValue = d.Stage || "";
+        const outcomeValue = d.Outcome || "";
+
         return `
           <tr>
             <td>${d.Dealer || "—"}</td>
             <td>${d.Customer || "—"}</td>
-            <td><span class="pill ${stageClass(d.Stage)}">${titleCase(d.Stage || "—")}</span></td>
-            <td>${d.Outcome || "—"}</td>
+            <td>
+              <select class="inline-select" id="stage-${index}">
+                <option value="Lead" ${stageValue === "Lead" ? "selected" : ""}>Lead</option>
+                <option value="Proposal" ${stageValue === "Proposal" ? "selected" : ""}>Proposal</option>
+                <option value="Approval" ${stageValue === "Approval" ? "selected" : ""}>Approval</option>
+                <option value="Payout" ${stageValue === "Payout" ? "selected" : ""}>Payout</option>
+                <option value="Declined" ${stageValue === "Declined" ? "selected" : ""}>Declined</option>
+              </select>
+            </td>
+            <td>
+              <select class="inline-select" id="outcome-${index}">
+                <option value="" ${outcomeValue === "" ? "selected" : ""}>—</option>
+                <option value="Dead" ${outcomeValue === "Dead" ? "selected" : ""}>Dead</option>
+                <option value="Follow-up" ${outcomeValue === "Follow-up" ? "selected" : ""}>Follow-up</option>
+              </select>
+            </td>
             <td>${formatCurrency(d.Amount)}</td>
-            <td>${d.LastUpdate || "—"}</td>
-            <td>${d.Priority || "—"}</td>
-            <td>${d.Notes || "—"}</td>
+            <td><input class="inline-input" id="lastUpdate-${index}" type="date" value="${d.LastUpdate || ""}" /></td>
+            <td><input class="inline-input" id="priority-${index}" type="text" value="${d.Priority || ""}" /></td>
+            <td><textarea class="inline-textarea" id="notes-${index}">${d.Notes || ""}</textarea></td>
             <td><span class="pill ${riskClass(risk)}">${risk}</span></td>
+            <td><button class="save-btn" onclick="saveDeal(${index})">Save</button></td>
           </tr>
         `;
       }).join("");
     }
 
     function applyFilters() {
-      const search = searchInput.value.trim().toLowerCase();
-      const stage = stageFilter.value;
-      const risk = riskFilter.value;
-
-      const filtered = allDeals.filter(d => {
-        const dealer = String(d.Dealer || "").toLowerCase();
-        const customer = String(d.Customer || "").toLowerCase();
-        const stageMatch = stage === "All" || String(d.Stage || "").toLowerCase() === stage.toLowerCase();
-        const riskMatch = risk === "All" || getRiskStatus(d) === risk;
-        const searchMatch = !search || dealer.includes(search) || customer.includes(search);
-        return stageMatch && riskMatch && searchMatch;
-      });
-
+      const filtered = currentFilteredDeals();
       renderStats(allDeals);
       renderRiskDeals(filtered);
       renderTable(filtered);
     }
 
+    async function saveDeal(filteredIndex) {
+      const filtered = currentFilteredDeals();
+      const deal = filtered[filteredIndex];
+      if (!deal) return;
+
+      deal.Stage = document.getElementById(`stage-${filteredIndex}`).value;
+      deal.Outcome = document.getElementById(`outcome-${filteredIndex}`).value;
+      deal.LastUpdate = document.getElementById(`lastUpdate-${filteredIndex}`).value;
+      deal.Priority = document.getElementById(`priority-${filteredIndex}`).value;
+      deal.Notes = document.getElementById(`notes-${filteredIndex}`).value;
+
+      try {
+        await fetch(API_URL, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(deal)
+        });
+        applyFilters();
+      } catch (error) {
+        console.error("Save failed:", error);
+        alert("Could not save row. Check console / API settings.");
+      }
+    }
+
+    async function addDeal() {
+      const newDeal = {
+        Dealer: dealerInput.value.trim(),
+        Customer: customerInput.value.trim(),
+        Stage: stageInput.value,
+        Outcome: outcomeInput.value,
+        Amount: amountInput.value.trim(),
+        LastUpdate: lastUpdateInput.value || new Date().toISOString().split("T")[0],
+        Priority: priorityInput.value.trim(),
+        Notes: notesInput.value.trim()
+      };
+
+      if (!newDeal.Dealer || !newDeal.Customer) {
+        addStatus.textContent = "Dealer and Customer are required.";
+        addStatus.className = "status-msg status-error";
+        return;
+      }
+
+      addStatus.textContent = "Adding deal...";
+      addStatus.className = "status-msg";
+
+      try {
+        await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newDeal)
+        });
+
+        dealerInput.value = "";
+        customerInput.value = "";
+        stageInput.value = "Lead";
+        outcomeInput.value = "";
+        amountInput.value = "";
+        priorityInput.value = "";
+        notesInput.value = "";
+        setTodayDefault();
+
+        addStatus.textContent = "Deal added.";
+        addStatus.className = "status-msg status-ok";
+        await loadDeals();
+      } catch (error) {
+        console.error("Add failed:", error);
+        addStatus.textContent = "Could not add deal. Check console / API settings.";
+        addStatus.className = "status-msg status-error";
+      }
+    }
+
     async function loadDeals() {
       try {
         const response = await fetch(API_URL);
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
         const raw = await response.json();
         const deals = normalizeDeals(raw);
@@ -612,14 +828,16 @@
         console.error(error);
         statsEl.innerHTML = "";
         riskDealsEl.innerHTML = `<div class="error">Could not load data from Sheet Ninja.</div>`;
-        tableBody.innerHTML = `<tr><td colspan="9" class="error">Could not load data from Sheet Ninja. Check the API URL and sheet permissions.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="10" class="error">Could not load data from Sheet Ninja. Check the API URL and sheet permissions.</td></tr>`;
       }
     }
 
     searchInput.addEventListener("input", applyFilters);
     stageFilter.addEventListener("change", applyFilters);
     riskFilter.addEventListener("change", applyFilters);
+    addDealBtn.addEventListener("click", addDeal);
 
+    setTodayDefault();
     loadDeals();
   </script>
 </body>
