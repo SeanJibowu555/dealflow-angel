@@ -30,7 +30,7 @@
     }
 
     .container {
-      max-width: 1180px;
+      max-width: 1320px;
       margin: 0 auto;
       padding: 32px 20px 48px;
     }
@@ -117,7 +117,7 @@
 
     .add-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 14px;
       margin-top: 12px;
     }
@@ -145,26 +145,13 @@
       box-shadow: var(--shadow);
     }
 
-    .btn:hover {
-      filter: brightness(1.05);
-    }
+    .btn:hover { filter: brightness(1.05); }
 
-    .status-msg {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
+    .status-msg { font-size: 0.9rem; color: var(--muted); }
+    .status-ok { color: #86efac; }
+    .status-error { color: #fca5a5; }
 
-    .status-ok {
-      color: #86efac;
-    }
-
-    .status-error {
-      color: #fca5a5;
-    }
-
-    .stage-guide {
-      margin-bottom: 22px;
-    }
+    .stage-guide { margin-bottom: 22px; }
 
     .stage-guide-grid {
       display: grid;
@@ -191,23 +178,15 @@
       line-height: 1.4;
     }
 
-    @media (max-width: 900px) {
-      .stage-guide-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .add-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    @media (max-width: 1100px) {
+      .stage-guide-grid { grid-template-columns: repeat(2, 1fr); }
+      .add-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 560px) {
       .stage-guide-grid,
-      .add-grid {
-        grid-template-columns: 1fr;
-      }
-      .add-grid .full {
-        grid-column: span 1;
-      }
+      .add-grid { grid-template-columns: 1fr; }
+      .add-grid .full { grid-column: span 1; }
     }
 
     .stats {
@@ -225,34 +204,14 @@
       box-shadow: var(--shadow);
     }
 
-    .stat-label {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 8px;
-    }
+    .stat-label { color: var(--muted); font-size: 0.85rem; margin-bottom: 8px; }
+    .stat-value { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.03em; }
 
-    .stat-value {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
+    .section-title { margin: 0 0 14px; font-size: 1.1rem; letter-spacing: -0.02em; }
 
-    .section-title {
-      margin: 0 0 14px;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
-    }
-
-    .risk-list {
-      display: grid;
-      gap: 12px;
-    }
+    .risk-list { display: grid; gap: 12px; }
 
     .risk-item {
       background: var(--panel-2);
@@ -262,10 +221,7 @@
       padding: 14px 14px 12px;
     }
 
-    .risk-item strong {
-      display: inline-block;
-      margin-bottom: 6px;
-    }
+    .risk-item strong { display: inline-block; margin-bottom: 6px; }
 
     .risk-meta {
       color: var(--muted);
@@ -273,14 +229,12 @@
       line-height: 1.5;
     }
 
-    .table-wrap {
-      overflow-x: auto;
-    }
+    .table-wrap { overflow-x: auto; }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 1260px;
+      min-width: 1600px;
     }
 
     thead th {
@@ -299,9 +253,7 @@
       font-size: 0.95rem;
     }
 
-    tbody tr:hover {
-      background: rgba(255,255,255,0.02);
-    }
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
 
     .pill {
       display: inline-flex;
@@ -315,16 +267,10 @@
       white-space: nowrap;
     }
 
-    .stage-lead { background: rgba(96,165,250,.12); color: #93c5fd; border-color: rgba(96,165,250,.2); }
-    .stage-proposal { background: rgba(251,191,36,.12); color: #fcd34d; border-color: rgba(251,191,36,.2); }
-    .stage-approval { background: rgba(167,139,250,.12); color: #c4b5fd; border-color: rgba(167,139,250,.2); }
-    .stage-payout { background: rgba(52,211,153,.12); color: #86efac; border-color: rgba(52,211,153,.2); }
-    .stage-declined { background: rgba(248,113,113,.12); color: #fca5a5; border-color: rgba(248,113,113,.2); }
-
     .risk-healthy { background: rgba(52,211,153,.12); color: #86efac; border-color: rgba(52,211,153,.2); }
     .risk-followup { background: rgba(251,191,36,.12); color: #fcd34d; border-color: rgba(251,191,36,.2); }
-    .risk-progress { background: rgba(248,113,113,.12); color: #fca5a5; border-color: rgba(248,113,113,.2); }
-    .risk-delay { background: rgba(244,114,182,.12); color: #f9a8d4; border-color: rgba(244,114,182,.2); }
+    .risk-progress { background: rgba(96,165,250,.12); color: #93c5fd; border-color: rgba(96,165,250,.2); }
+    .risk-delay { background: rgba(248,113,113,.12); color: #fca5a5; border-color: rgba(248,113,113,.2); }
 
     .save-btn {
       padding: 10px 12px;
@@ -337,9 +283,7 @@
       white-space: nowrap;
     }
 
-    .save-btn:hover {
-      filter: brightness(1.08);
-    }
+    .save-btn:hover { filter: brightness(1.08); }
 
     .loading, .error, .empty {
       color: var(--muted);
@@ -353,22 +297,22 @@
       font-size: 0.88rem;
     }
 
+    .tiny {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 6px;
+      line-height: 1.3;
+    }
+
     @media (max-width: 980px) {
-      .stats {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .controls {
-        grid-template-columns: 1fr;
-      }
+      .stats { grid-template-columns: repeat(3, 1fr); }
+      .controls { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .title-wrap h1 {
-        font-size: 1.6rem;
-      }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .title-wrap h1 { font-size: 1.6rem; }
     }
   </style>
 </head>
@@ -407,8 +351,10 @@
           <label for="outcomeInput">Outcome</label>
           <select id="outcomeInput">
             <option value="">—</option>
-            <option value="Dead">Dead</option>
             <option value="Follow-up">Follow-up</option>
+            <option value="Dead">Dead</option>
+            <option value="Completed">Completed</option>
+            <option value="Paid out">Paid out</option>
           </select>
         </div>
         <div class="control">
@@ -416,16 +362,20 @@
           <input id="amountInput" type="number" placeholder="e.g. 15000" />
         </div>
         <div class="control">
+          <label for="dateOfEntryInput">Date of Entry</label>
+          <input id="dateOfEntryInput" type="date" />
+        </div>
+        <div class="control">
+          <label for="lastUpdateInput">Last Update</label>
+          <input id="lastUpdateInput" type="date" />
+        </div>
+        <div class="control">
           <label for="priorityInput">Priority</label>
           <input id="priorityInput" type="text" placeholder="High / Medium / Low" />
         </div>
         <div class="control full">
           <label for="notesInput">Notes</label>
-          <textarea id="notesInput" placeholder="Any context, blockers, or next steps"></textarea>
-        </div>
-        <div class="control">
-          <label for="lastUpdateInput">Last Update</label>
-          <input id="lastUpdateInput" type="date" />
+          <textarea id="notesInput" placeholder="Any context, blockers, callback times, or next steps"></textarea>
         </div>
       </div>
       <div class="button-row">
@@ -494,7 +444,9 @@
                 <th>Stage</th>
                 <th>Outcome</th>
                 <th>Amount</th>
+                <th>Date of Entry</th>
                 <th>Last Update</th>
+                <th>Next Callback</th>
                 <th>Priority</th>
                 <th>Notes</th>
                 <th>Risk Status</th>
@@ -502,12 +454,12 @@
               </tr>
             </thead>
             <tbody id="tableBody">
-              <tr><td colspan="10" class="loading">Loading deals...</td></tr>
+              <tr><td colspan="12" class="loading">Loading deals...</td></tr>
             </tbody>
           </table>
         </div>
         <div class="footer-note">
-          Risk rules: Proposal older than 7 days = Needs follow-up. Approval older than 5 days = Check progress. Notes containing “waiting” or “outstanding” = Potential delay. Declined + Follow-up = Needs follow-up. Declined + Dead = Healthy.
+          Follow-up overrides risk logic. Missing-doc notes escalate proposals to Potential delay. Date of Entry vs Last Update affects follow-up risk: 1 day = Check progress, 2+ days = Potential delay. Callback notes such as “call back at 10am Tuesday” are parsed heuristically and overdue callbacks escalate to Potential delay while the page is open.
         </div>
       </div>
     </div>
@@ -528,17 +480,23 @@
     const stageInput = document.getElementById("stageInput");
     const outcomeInput = document.getElementById("outcomeInput");
     const amountInput = document.getElementById("amountInput");
+    const dateOfEntryInput = document.getElementById("dateOfEntryInput");
+    const lastUpdateInput = document.getElementById("lastUpdateInput");
     const priorityInput = document.getElementById("priorityInput");
     const notesInput = document.getElementById("notesInput");
-    const lastUpdateInput = document.getElementById("lastUpdateInput");
     const addDealBtn = document.getElementById("addDealBtn");
     const addStatus = document.getElementById("addStatus");
 
     let allDeals = [];
+    let callbackAlertsShown = new Set();
+
+    function todayISO() {
+      return new Date().toISOString().split("T")[0];
+    }
 
     function setTodayDefault() {
-      const today = new Date().toISOString().split("T")[0];
-      if (!lastUpdateInput.value) lastUpdateInput.value = today;
+      if (!dateOfEntryInput.value) dateOfEntryInput.value = todayISO();
+      if (!lastUpdateInput.value) lastUpdateInput.value = todayISO();
     }
 
     function isSpreadsheetSerialDate(value) {
@@ -551,11 +509,9 @@
       const utcDays = Math.floor(serial - 25569);
       const utcValue = utcDays * 86400;
       const dateInfo = new Date(utcValue * 1000);
-
       const year = dateInfo.getUTCFullYear();
       const month = String(dateInfo.getUTCMonth() + 1).padStart(2, "0");
       const day = String(dateInfo.getUTCDate()).padStart(2, "0");
-
       return `${year}-${month}-${day}`;
     }
 
@@ -575,29 +531,136 @@
       }).format(num);
     }
 
-    function daysSince(dateStr) {
-      const normalized = normalizeDate(dateStr);
-      const today = new Date();
-      const date = new Date(normalized);
-      if (Number.isNaN(date.getTime())) return 0;
-      const diff = today - date;
-      return Math.floor(diff / (1000 * 60 * 60 * 24));
+    function parseDateOnly(dateStr) {
+      if (!dateStr) return null;
+      const d = new Date(dateStr + "T00:00:00");
+      return Number.isNaN(d.getTime()) ? null : d;
+    }
+
+    function daysBetween(dateA, dateB) {
+      const a = parseDateOnly(dateA);
+      const b = parseDateOnly(dateB);
+      if (!a || !b) return 0;
+      return Math.floor((b - a) / (1000 * 60 * 60 * 24));
+    }
+
+    function containsDocChaseNotes(notes) {
+      const text = String(notes || "").toLowerCase();
+      const patterns = [
+        "documentation", "documents", "docs", "need customer to send",
+        "customer to send", "proof of address", "bank statement",
+        "bank statements", "payslip", "payslips", "id", "passport",
+        "driving licence", "license", "utility bill", "outstanding documents"
+      ];
+      return patterns.some(p => text.includes(p));
+    }
+
+    function parseTimeTo24(hourStr, minuteStr, meridian) {
+      let hour = parseInt(hourStr, 10);
+      const minute = parseInt(minuteStr || "0", 10);
+      const mer = (meridian || "").toLowerCase();
+
+      if (mer === "pm" && hour < 12) hour += 12;
+      if (mer === "am" && hour === 12) hour = 0;
+
+      return { hour, minute };
+    }
+
+    function nextWeekday(baseDate, targetDay) {
+      const result = new Date(baseDate);
+      const currentDay = result.getDay();
+      let diff = targetDay - currentDay;
+      if (diff < 0) diff += 7;
+      if (diff === 0) {
+        // same weekday means today
+      }
+      result.setDate(result.getDate() + diff);
+      return result;
+    }
+
+    function parseCallbackFromNotes(notes) {
+      const text = String(notes || "").toLowerCase().trim();
+      if (!text) return null;
+
+      const timeMatch = text.match(/(\d{1,2})(?::(\d{2}))?\s*(a\.?m\.?|p\.?m\.?)/i);
+      if (!timeMatch) return null;
+
+      const { hour, minute } = parseTimeTo24(timeMatch[1], timeMatch[2], timeMatch[3]);
+      const now = new Date();
+      let targetDate = new Date(now);
+
+      const weekdays = {
+        sunday: 0, monday: 1, tuesday: 2, wednesday: 3,
+        thursday: 4, friday: 5, saturday: 6
+      };
+
+      if (text.includes("tomorrow")) {
+        targetDate.setDate(now.getDate() + 1);
+      } else if (text.includes("today")) {
+        // keep today
+      } else {
+        for (const [name, idx] of Object.entries(weekdays)) {
+          if (text.includes(name)) {
+            targetDate = nextWeekday(now, idx);
+            break;
+          }
+        }
+      }
+
+      targetDate.setHours(hour, minute, 0, 0);
+
+      return targetDate;
+    }
+
+    function formatCallback(dt) {
+      if (!dt) return "—";
+      return dt.toLocaleString([], {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+      });
+    }
+
+    function getFollowUpGapSeverity(deal) {
+      const entry = normalizeDate(deal.DateOfEntry);
+      const last = normalizeDate(deal.LastUpdate);
+      if (!entry || !last) return "Needs follow-up";
+      const gap = daysBetween(entry, last);
+      if (gap >= 2) return "Potential delay";
+      if (gap >= 1) return "Check progress";
+      return "Needs follow-up";
     }
 
     function getRiskStatus(deal) {
       const stage = String(deal.Stage || "").trim().toLowerCase();
       const outcome = String(deal.Outcome || "").trim().toLowerCase();
       const notes = String(deal.Notes || "").trim().toLowerCase();
-      const age = daysSince(deal.LastUpdate);
 
-      if (stage === "declined") {
-        if (outcome === "follow-up") return "Needs follow-up";
-        if (outcome === "dead") return "Healthy";
+      const callbackDt = parseCallbackFromNotes(notes);
+      if (callbackDt && callbackDt.getTime() < Date.now()) {
+        return "Potential delay";
       }
 
-      if (notes.includes("waiting") || notes.includes("outstanding")) return "Potential delay";
-      if (stage === "proposal" && age > 7) return "Needs follow-up";
-      if (stage === "approval" && age > 5) return "Check progress";
+      if (stage === "proposal" && containsDocChaseNotes(notes)) {
+        return "Potential delay";
+      }
+
+      if (outcome === "follow-up") {
+        return getFollowUpGapSeverity(deal);
+      }
+
+      if (notes.includes("waiting") || notes.includes("outstanding")) {
+        return "Potential delay";
+      }
+
+      const entry = normalizeDate(deal.DateOfEntry);
+      const last = normalizeDate(deal.LastUpdate);
+      const stageAge = daysBetween(last || entry, todayISO());
+
+      if (stage === "proposal" && stageAge > 7) return "Needs follow-up";
+      if (stage === "approval" && stageAge > 5) return "Check progress";
       return "Healthy";
     }
 
@@ -671,11 +734,14 @@
 
       riskDealsEl.innerHTML = risky.map(d => {
         const risk = getRiskStatus(d);
+        const callbackDt = parseCallbackFromNotes(d.Notes || "");
         return `
           <div class="risk-item">
             <strong>${d.Dealer || "Unknown Dealer"} — ${d.Customer || "Unknown Customer"}</strong>
             <div class="risk-meta">
-              Stage: ${d.Stage || "—"} · Outcome: ${d.Outcome || "—"} · Amount: ${formatCurrency(d.Amount)} · Last update: ${d.LastUpdate || "—"} · Risk: ${risk}
+              Stage: ${d.Stage || "—"} · Outcome: ${d.Outcome || "—"} · Amount: ${formatCurrency(d.Amount)} · Date of entry: ${d.DateOfEntry || "—"} · Last update: ${d.LastUpdate || "—"} · Risk: ${risk}
+              <br/>
+              Next callback: ${formatCallback(callbackDt)}
               <br/>
               Notes: ${d.Notes || "—"}
             </div>
@@ -686,14 +752,14 @@
 
     function renderTable(deals) {
       if (!deals.length) {
-        tableBody.innerHTML = `<tr><td colspan="10" class="empty">No deals match the current filters.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="12" class="empty">No deals match the current filters.</td></tr>`;
         return;
       }
 
       tableBody.innerHTML = deals.map((d, index) => {
         const risk = getRiskStatus(d);
-        const stageValue = d.Stage || "";
         const outcomeValue = d.Outcome || "";
+        const callbackDt = parseCallbackFromNotes(d.Notes || "");
 
         return `
           <tr>
@@ -701,22 +767,29 @@
             <td>${d.Customer || "—"}</td>
             <td>
               <select class="inline-select" id="stage-${index}">
-                <option value="Lead" ${stageValue === "Lead" ? "selected" : ""}>Lead</option>
-                <option value="Proposal" ${stageValue === "Proposal" ? "selected" : ""}>Proposal</option>
-                <option value="Approval" ${stageValue === "Approval" ? "selected" : ""}>Approval</option>
-                <option value="Payout" ${stageValue === "Payout" ? "selected" : ""}>Payout</option>
-                <option value="Declined" ${stageValue === "Declined" ? "selected" : ""}>Declined</option>
+                <option value="Lead" ${d.Stage === "Lead" ? "selected" : ""}>Lead</option>
+                <option value="Proposal" ${d.Stage === "Proposal" ? "selected" : ""}>Proposal</option>
+                <option value="Approval" ${d.Stage === "Approval" ? "selected" : ""}>Approval</option>
+                <option value="Payout" ${d.Stage === "Payout" ? "selected" : ""}>Payout</option>
+                <option value="Declined" ${d.Stage === "Declined" ? "selected" : ""}>Declined</option>
               </select>
             </td>
             <td>
               <select class="inline-select" id="outcome-${index}">
                 <option value="" ${outcomeValue === "" ? "selected" : ""}>—</option>
-                <option value="Dead" ${outcomeValue === "Dead" ? "selected" : ""}>Dead</option>
                 <option value="Follow-up" ${outcomeValue === "Follow-up" ? "selected" : ""}>Follow-up</option>
+                <option value="Dead" ${outcomeValue === "Dead" ? "selected" : ""}>Dead</option>
+                <option value="Completed" ${outcomeValue === "Completed" ? "selected" : ""}>Completed</option>
+                <option value="Paid out" ${outcomeValue === "Paid out" ? "selected" : ""}>Paid out</option>
               </select>
             </td>
             <td>${formatCurrency(d.Amount)}</td>
+            <td><input class="inline-input" id="entry-${index}" type="date" value="${d.DateOfEntry || ""}" /></td>
             <td><input class="inline-input" id="lastUpdate-${index}" type="date" value="${d.LastUpdate || ""}" /></td>
+            <td>
+              ${formatCallback(callbackDt)}
+              <span class="tiny">Parsed from notes</span>
+            </td>
             <td><input class="inline-input" id="priority-${index}" type="text" value="${d.Priority || ""}" /></td>
             <td><textarea class="inline-textarea" id="notes-${index}">${d.Notes || ""}</textarea></td>
             <td><span class="pill ${riskClass(risk)}">${risk}</span></td>
@@ -726,11 +799,29 @@
       }).join("");
     }
 
+    function maybeShowCallbackAlerts() {
+      allDeals.forEach(deal => {
+        const callbackDt = parseCallbackFromNotes(deal.Notes || "");
+        if (!callbackDt) return;
+        const key = `${deal.Dealer}|${deal.Customer}|${callbackDt.toISOString()}`;
+        const now = Date.now();
+        if (callbackDt.getTime() <= now && !callbackAlertsShown.has(key)) {
+          callbackAlertsShown.add(key);
+          try {
+            alert(`Callback due: ${deal.Dealer || "Unknown Dealer"} — ${deal.Customer || "Unknown Customer"} at ${formatCallback(callbackDt)}`);
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      });
+    }
+
     function applyFilters() {
       const filtered = currentFilteredDeals();
       renderStats(allDeals);
       renderRiskDeals(filtered);
       renderTable(filtered);
+      maybeShowCallbackAlerts();
     }
 
     async function saveDeal(filteredIndex) {
@@ -740,6 +831,7 @@
 
       deal.Stage = document.getElementById(`stage-${filteredIndex}`).value;
       deal.Outcome = document.getElementById(`outcome-${filteredIndex}`).value;
+      deal.DateOfEntry = document.getElementById(`entry-${filteredIndex}`).value;
       deal.LastUpdate = document.getElementById(`lastUpdate-${filteredIndex}`).value;
       deal.Priority = document.getElementById(`priority-${filteredIndex}`).value;
       deal.Notes = document.getElementById(`notes-${filteredIndex}`).value;
@@ -764,7 +856,8 @@
         Stage: stageInput.value,
         Outcome: outcomeInput.value,
         Amount: amountInput.value.trim(),
-        LastUpdate: lastUpdateInput.value || new Date().toISOString().split("T")[0],
+        DateOfEntry: dateOfEntryInput.value || todayISO(),
+        LastUpdate: lastUpdateInput.value || todayISO(),
         Priority: priorityInput.value.trim(),
         Notes: notesInput.value.trim()
       };
@@ -818,6 +911,7 @@
           Stage: d.Stage ?? d.stage ?? "",
           Outcome: d.Outcome ?? d.outcome ?? "",
           Amount: d.Amount ?? d.amount ?? "",
+          DateOfEntry: normalizeDate(d.DateOfEntry ?? d.dateofentry ?? d.dateOfEntry ?? ""),
           LastUpdate: normalizeDate(d.LastUpdate ?? d.lastupdate ?? d.lastUpdate ?? ""),
           Priority: d.Priority ?? d.priority ?? "",
           Notes: d.Notes ?? d.notes ?? ""
@@ -828,7 +922,7 @@
         console.error(error);
         statsEl.innerHTML = "";
         riskDealsEl.innerHTML = `<div class="error">Could not load data from Sheet Ninja.</div>`;
-        tableBody.innerHTML = `<tr><td colspan="10" class="error">Could not load data from Sheet Ninja. Check the API URL and sheet permissions.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="12" class="error">Could not load data from Sheet Ninja. Check the API URL and sheet permissions.</td></tr>`;
       }
     }
 
@@ -839,6 +933,7 @@
 
     setTodayDefault();
     loadDeals();
+    setInterval(maybeShowCallbackAlerts, 60000);
   </script>
 </body>
 </html>
