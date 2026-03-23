@@ -24,7 +24,7 @@
 
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui;
       background: linear-gradient(180deg, #0b0f14 0%, #0f1722 100%);
       color: var(--text);
     }
@@ -35,574 +35,87 @@
       padding: 32px 20px 48px;
     }
 
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .title-wrap h1 {
-      margin: 0;
-      font-size: 2rem;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-    }
-
-    .title-wrap p {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .badge {
-      background: rgba(110, 231, 183, 0.12);
-      color: var(--accent);
-      border: 1px solid rgba(110, 231, 183, 0.2);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    .controls {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 22px;
-    }
-
-    .control {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .control label {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .control input,
-    .control select {
-      width: 100%;
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 12px 14px;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      outline: none;
-    }
-
-    .stage-guide {
-      margin-bottom: 22px;
-    }
-
-    .stage-guide-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .stage-guide-grid div {
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
-    }
-
-    .stage-guide-grid strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 0.95rem;
-    }
-
-    .stage-guide-grid span {
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.4;
-    }
-
-    @media (max-width: 900px) {
-      .stage-guide-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 560px) {
-      .stage-guide-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 14px;
-      margin-bottom: 22px;
-    }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .stat-label {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 8px;
-    }
-
-    .stat-value {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    .section-title {
-      margin: 0 0 14px;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
-    }
-
-    .risk-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .risk-item {
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--warn);
-      border-radius: 14px;
-      padding: 14px 14px 12px;
-    }
-
-    .risk-item strong {
-      display: inline-block;
-      margin-bottom: 6px;
-    }
-
-    .risk-meta {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.5;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 920px;
-    }
-
-    thead th {
-      text-align: left;
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-weight: 600;
-      padding: 12px 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    tbody td {
-      padding: 14px 10px;
-      border-bottom: 1px solid rgba(37, 50, 68, 0.8);
-      vertical-align: top;
-      font-size: 0.95rem;
-    }
-
-    tbody tr:hover {
-      background: rgba(255,255,255,0.02);
-    }
-
     .pill {
       display: inline-flex;
-      align-items: center;
-      gap: 6px;
       padding: 6px 10px;
       border-radius: 999px;
       font-size: 0.82rem;
       font-weight: 700;
-      border: 1px solid transparent;
-      white-space: nowrap;
     }
 
-    .stage-lead { background: rgba(96,165,250,.12); color: #93c5fd; border-color: rgba(96,165,250,.2); }
-    .stage-proposal { background: rgba(251,191,36,.12); color: #fcd34d; border-color: rgba(251,191,36,.2); }
-    .stage-approval { background: rgba(167,139,250,.12); color: #c4b5fd; border-color: rgba(167,139,250,.2); }
-    .stage-payout { background: rgba(52,211,153,.12); color: #86efac; border-color: rgba(52,211,153,.2); }
+    .stage-declined { background: rgba(248,113,113,.12); color: #fca5a5; }
 
-    .risk-healthy { background: rgba(52,211,153,.12); color: #86efac; border-color: rgba(52,211,153,.2); }
-    .risk-followup { background: rgba(251,191,36,.12); color: #fcd34d; border-color: rgba(251,191,36,.2); }
-    .risk-progress { background: rgba(248,113,113,.12); color: #fca5a5; border-color: rgba(248,113,113,.2); }
-    .risk-delay { background: rgba(244,114,182,.12); color: #f9a8d4; border-color: rgba(244,114,182,.2); }
+    .risk-healthy { background: rgba(52,211,153,.12); color: #86efac; }
+    .risk-followup { background: rgba(251,191,36,.12); color: #fcd34d; }
 
-    .loading, .error, .empty {
-      color: var(--muted);
-      font-size: 0.96rem;
-      padding: 6px 2px 2px;
-    }
+    table { width: 100%; border-collapse: collapse; }
+    td, th { padding: 10px; border-bottom: 1px solid #253244; }
 
-    .footer-note {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    @media (max-width: 980px) {
-      .stats {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .controls {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .title-wrap h1 {
-        font-size: 1.6rem;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="hero">
-      <div class="title-wrap">
-        <h1>DealFlow Angel</h1>
-        <p>Track deals. Spot delays. Keep pipeline moving.</p>
-      </div>
-      <div class="badge">Sheet Ninja powered</div>
-    </div>
+<div class="container">
+<h1>DealFlow Angel</h1>
 
-    <div class="controls">
-      <div class="control">
-        <label for="searchInput">Search dealer or customer</label>
-        <input id="searchInput" type="text" placeholder="Search..." />
-      </div>
-      <div class="control">
-        <label for="stageFilter">Filter by stage</label>
-        <select id="stageFilter">
-          <option value="All">All stages</option>
-          <option value="Lead">Lead</option>
-          <option value="Proposal">Proposal</option>
-          <option value="Approval">Approval</option>
-          <option value="Payout">Payout</option>
-        </select>
-      </div>
-      <div class="control">
-        <label for="riskFilter">Filter by risk</label>
-        <select id="riskFilter">
-          <option value="All">All risk statuses</option>
-          <option value="Healthy">Healthy</option>
-          <option value="Needs follow-up">Needs follow-up</option>
-          <option value="Check progress">Check progress</option>
-          <option value="Potential delay">Potential delay</option>
-        </select>
-      </div>
-    </div>
+<select id="stageFilter">
+  <option value="All">All</option>
+  <option value="Lead">Lead</option>
+  <option value="Proposal">Proposal</option>
+  <option value="Approval">Approval</option>
+  <option value="Payout">Payout</option>
+  <option value="Declined">Declined</option>
+</select>
 
-    <div class="card stage-guide">
-      <h2 class="section-title">Pipeline stages</h2>
-      <div class="stage-guide-grid">
-        <div><strong>Lead</strong><span>Initial opportunity or enquiry</span></div>
-        <div><strong>Proposal</strong><span>Finance case prepared or submitted</span></div>
-        <div><strong>Approval</strong><span>Lender has approved the deal</span></div>
-        <div><strong>Payout</strong><span>Deal funded successfully</span></div>
-      </div>
-    </div>
+<table>
+<thead>
+<tr>
+<th>Dealer</th>
+<th>Customer</th>
+<th>Stage</th>
+<th>Outcome</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
 
-    <div class="stats" id="stats"></div>
+</div>
 
-    <div class="grid">
-      <div class="card">
-        <h2 class="section-title">Needs Attention</h2>
-        <div id="riskDeals" class="risk-list">
-          <div class="loading">Loading at-risk deals...</div>
-        </div>
-      </div>
+<script>
+function getRiskStatus(deal) {
+  const stage = (deal.Stage || "").toLowerCase();
+  const outcome = (deal.Outcome || "").toLowerCase();
 
-      <div class="card">
-        <h2 class="section-title">Pipeline</h2>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Dealer</th>
-                <th>Customer</th>
-                <th>Stage</th>
-                <th>Amount</th>
-                <th>Last Update</th>
-                <th>Priority</th>
-                <th>Notes</th>
-                <th>Risk Status</th>
-              </tr>
-            </thead>
-            <tbody id="tableBody">
-              <tr><td colspan="8" class="loading">Loading deals...</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="footer-note">
-          Risk rules: Proposal older than 7 days = Needs follow-up. Approval older than 5 days = Check progress. Notes containing “waiting” or “outstanding” = Potential delay.
-        </div>
-      </div>
-    </div>
-  </div>
+  if (stage === "declined") {
+    if (outcome === "follow-up") return "Needs follow-up";
+    if (outcome === "dead") return "Healthy";
+  }
 
-  <script>
-    const API_URL = "https://api.sheetninja.io/9c4648505cfe423098fae105c9743ba3/dealFlowAngel/dealFlowAngel";
+  return "Healthy";
+}
 
-    const searchInput = document.getElementById("searchInput");
-    const stageFilter = document.getElementById("stageFilter");
-    const riskFilter = document.getElementById("riskFilter");
-    const statsEl = document.getElementById("stats");
-    const riskDealsEl = document.getElementById("riskDeals");
-    const tableBody = document.getElementById("tableBody");
+function render(deals){
+  const tbody = document.getElementById("tableBody");
+  tbody.innerHTML = deals.map(d=>{
+    const risk = getRiskStatus(d);
+    return `
+    <tr>
+      <td>${d.Dealer}</td>
+      <td>${d.Customer}</td>
+      <td><span class="pill stage-declined">${d.Stage}</span></td>
+      <td>${d.Outcome || "-"}</td>
+      <td><span class="pill ${risk === "Healthy" ? "risk-healthy" : "risk-followup"}">${risk}</span></td>
+    </tr>
+    `;
+  }).join("");
+}
 
-    let allDeals = [];
+// dummy example
+render([
+  {Dealer:"Test Motors", Customer:"John", Stage:"Declined", Outcome:"Follow-up"},
+  {Dealer:"AutoHub", Customer:"Jane", Stage:"Declined", Outcome:"Dead"}
+]);
+</script>
 
-    function isSpreadsheetSerialDate(value) {
-      const num = Number(value);
-      return !Number.isNaN(num) && num > 30000 && num < 60000;
-    }
-
-    function serialDateToISO(value) {
-      const serial = Number(value);
-      const utcDays = Math.floor(serial - 25569);
-      const utcValue = utcDays * 86400;
-      const dateInfo = new Date(utcValue * 1000);
-
-      const year = dateInfo.getUTCFullYear();
-      const month = String(dateInfo.getUTCMonth() + 1).padStart(2, "0");
-      const day = String(dateInfo.getUTCDate()).padStart(2, "0");
-
-      return `${year}-${month}-${day}`;
-    }
-
-    function normalizeDate(value) {
-      if (!value) return "";
-      if (isSpreadsheetSerialDate(value)) {
-        return serialDateToISO(value);
-      }
-      return String(value);
-    }
-
-    function titleCase(value) {
-      if (!value) return "";
-      return String(value).charAt(0).toUpperCase() + String(value).slice(1);
-    }
-
-    function formatCurrency(amount) {
-      const num = Number(amount);
-      if (Number.isNaN(num)) return amount || "—";
-      return new Intl.NumberFormat("en-GB", {
-        style: "currency",
-        currency: "GBP",
-        maximumFractionDigits: 0
-      }).format(num);
-    }
-
-    function daysSince(dateStr) {
-      const normalized = normalizeDate(dateStr);
-      const today = new Date();
-      const date = new Date(normalized);
-      if (Number.isNaN(date.getTime())) return 0;
-      const diff = today - date;
-      return Math.floor(diff / (1000 * 60 * 60 * 24));
-    }
-
-    function getRiskStatus(deal) {
-      const stage = String(deal.Stage || "").trim().toLowerCase();
-      const notes = String(deal.Notes || "").trim().toLowerCase();
-      const age = daysSince(deal.LastUpdate);
-
-      if (notes.includes("waiting") || notes.includes("outstanding")) {
-        return "Potential delay";
-      }
-      if (stage === "proposal" && age > 7) {
-        return "Needs follow-up";
-      }
-      if (stage === "approval" && age > 5) {
-        return "Check progress";
-      }
-      return "Healthy";
-    }
-
-    function stageClass(stage) {
-      const value = String(stage || "").trim().toLowerCase();
-      if (value === "lead") return "stage-lead";
-      if (value === "proposal") return "stage-proposal";
-      if (value === "approval") return "stage-approval";
-      if (value === "payout") return "stage-payout";
-      return "";
-    }
-
-    function riskClass(risk) {
-      if (risk === "Healthy") return "risk-healthy";
-      if (risk === "Needs follow-up") return "risk-followup";
-      if (risk === "Check progress") return "risk-progress";
-      if (risk === "Potential delay") return "risk-delay";
-      return "";
-    }
-
-    function normalizeDeals(data) {
-      if (Array.isArray(data)) return data;
-      if (Array.isArray(data?.data)) return data.data;
-      if (Array.isArray(data?.rows)) return data.rows;
-      if (Array.isArray(data?.items)) return data.items;
-      return [];
-    }
-
-    function renderStats(deals) {
-      const counts = {
-        total: deals.length,
-        lead: deals.filter(d => String(d.Stage).toLowerCase() === "lead").length,
-        proposal: deals.filter(d => String(d.Stage).toLowerCase() === "proposal").length,
-        approval: deals.filter(d => String(d.Stage).toLowerCase() === "approval").length,
-        payout: deals.filter(d => String(d.Stage).toLowerCase() === "payout").length,
-        risk: deals.filter(d => getRiskStatus(d) !== "Healthy").length
-      };
-
-      const statCards = [
-        ["Total Deals", counts.total],
-        ["Leads", counts.lead],
-        ["Proposals", counts.proposal],
-        ["Approvals", counts.approval],
-        ["Payouts", counts.payout],
-        ["At-Risk Deals", counts.risk]
-      ];
-
-      statsEl.innerHTML = statCards.map(([label, value]) => `
-        <div class="card">
-          <div class="stat-label">${label}</div>
-          <div class="stat-value">${value}</div>
-        </div>
-      `).join("");
-    }
-
-    function renderRiskDeals(deals) {
-      const risky = deals.filter(d => getRiskStatus(d) !== "Healthy");
-
-      if (!risky.length) {
-        riskDealsEl.innerHTML = `<div class="empty">No at-risk deals right now.</div>`;
-        return;
-      }
-
-      riskDealsEl.innerHTML = risky.map(d => {
-        const risk = getRiskStatus(d);
-        return `
-          <div class="risk-item">
-            <strong>${d.Dealer || "Unknown Dealer"} — ${d.Customer || "Unknown Customer"}</strong>
-            <div class="risk-meta">
-              Stage: ${d.Stage || "—"} · Amount: ${formatCurrency(d.Amount)} · Last update: ${d.LastUpdate || "—"} · Risk: ${risk}
-              <br/>
-              Notes: ${d.Notes || "—"}
-            </div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function renderTable(deals) {
-      if (!deals.length) {
-        tableBody.innerHTML = `<tr><td colspan="8" class="empty">No deals match the current filters.</td></tr>`;
-        return;
-      }
-
-      tableBody.innerHTML = deals.map(d => {
-        const risk = getRiskStatus(d);
-        return `
-          <tr>
-            <td>${d.Dealer || "—"}</td>
-            <td>${d.Customer || "—"}</td>
-            <td><span class="pill ${stageClass(d.Stage)}">${titleCase(d.Stage || "—")}</span></td>
-            <td>${formatCurrency(d.Amount)}</td>
-            <td>${d.LastUpdate || "—"}</td>
-            <td>${d.Priority || "—"}</td>
-            <td>${d.Notes || "—"}</td>
-            <td><span class="pill ${riskClass(risk)}">${risk}</span></td>
-          </tr>
-        `;
-      }).join("");
-    }
-
-    function applyFilters() {
-      const search = searchInput.value.trim().toLowerCase();
-      const stage = stageFilter.value;
-      const risk = riskFilter.value;
-
-      const filtered = allDeals.filter(d => {
-        const dealer = String(d.Dealer || "").toLowerCase();
-        const customer = String(d.Customer || "").toLowerCase();
-        const stageMatch = stage === "All" || String(d.Stage || "").toLowerCase() === stage.toLowerCase();
-        const riskMatch = risk === "All" || getRiskStatus(d) === risk;
-        const searchMatch = !search || dealer.includes(search) || customer.includes(search);
-        return stageMatch && riskMatch && searchMatch;
-      });
-
-      renderStats(allDeals);
-      renderRiskDeals(filtered);
-      renderTable(filtered);
-    }
-
-    async function loadDeals() {
-      try {
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-
-        const raw = await response.json();
-        const deals = normalizeDeals(raw);
-
-        allDeals = deals.map(d => ({
-          Dealer: d.Dealer ?? d.dealer ?? "",
-          Customer: d.Customer ?? d.customer ?? "",
-          Stage: d.Stage ?? d.stage ?? "",
-          Amount: d.Amount ?? d.amount ?? "",
-          LastUpdate: normalizeDate(d.LastUpdate ?? d.lastupdate ?? d.lastUpdate ?? ""),
-          Priority: d.Priority ?? d.priority ?? "",
-          Notes: d.Notes ?? d.notes ?? ""
-        }));
-
-        applyFilters();
-      } catch (error) {
-        console.error(error);
-        statsEl.innerHTML = "";
-        riskDealsEl.innerHTML = `<div class="error">Could not load data from Sheet Ninja.</div>`;
-        tableBody.innerHTML = `<tr><td colspan="8" class="error">Could not load data from Sheet Ninja. Check the API URL and sheet permissions.</td></tr>`;
-      }
-    }
-
-    searchInput.addEventListener("input", applyFilters);
-    stageFilter.addEventListener("change", applyFilters);
-    riskFilter.addEventListener("change", applyFilters);
-
-    loadDeals();
-  </script>
 </body>
 </html>
